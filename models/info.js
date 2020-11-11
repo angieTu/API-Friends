@@ -9,6 +9,8 @@ const infoSchema = new mongoose.Schema({
   lastDate: Date,
   numberEpisodes: Number,
   numberSeasons: Number,
+  authors: String,
+  // familia, objeto?
   //seasons
   //characters
 });

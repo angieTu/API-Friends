@@ -17,7 +17,24 @@ const getCharacter = async (req, res) => {
 
 const getCharacters = async (req, res) => {
   try {
-    const characters = await Character.find();
+    const camposExcluidos = ["page", "limit", "sort"];
+    const queryObj = { ...req.query };
+    camposExcluidos.forEach((el) => delete queryObj[el]);
+
+    let query = Character.find(queryObj);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 10;
+    const skip = (page - 1) * limit;
+    query = query.limit(limit).skip(skip);
+
+    if (req.query.sort) {
+      const campos = req.query.sort.split(",").join(" ");
+      query = query.sort(campos);
+    } else {
+      query = query.sort(" ");
+    }
+
+    const characters = await query;
     if (!characters.length) {
       res.status(500).json({
         status: "fail",

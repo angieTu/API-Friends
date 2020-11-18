@@ -97,4 +97,20 @@ const onlyAdmin = (req, res, next) => {
   next();
 };
 
-module.exports = { login, signUp, onlyAdmin, protectRoute };
+const onlyManagers = (req, res, next) => {
+  if (!req.user.role || req.user.role !== "manager") {
+    res.status(401).json({
+      status: "fail",
+      message: "No tiene autorización",
+    });
+  }
+  next();
+};
+
+module.exports = {
+  login,
+  signUp,
+  onlyAdmin,
+  protectRoute,
+  onlyManagers,
+};

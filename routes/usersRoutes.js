@@ -6,6 +6,7 @@ const {
   login,
   protectRoute,
   onlyAdmin,
+  onlyManagers,
 } = require("../controllers/authControllers");
 const {
   getUser,
@@ -18,8 +19,8 @@ const {
 
 router.post("/login", login);
 router.post("/signup", signUp);
-router.get("/", getUsers);
-router.get("/:id", getUser);
+router.get("/", protectRoute, onlyAdmin, onlyManagers, getUsers);
+router.get("/:id", protectRoute, onlyAdmin, onlyManagers, getUser);
 router.delete("/:id", protectRoute, onlyAdmin, deleteUser);
 router.post("/", protectRoute, onlyAdmin, postUser);
 router.patch("/:id", protectRoute, onlyAdmin, patchUser);

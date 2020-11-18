@@ -17,7 +17,24 @@ const getSeason = async (req, res) => {
 
 const getSeasons = async (req, res) => {
   try {
-    const seasons = await Season.find();
+    const camposExcluidos = ["page", "limit", "sort"];
+    const queryObj = { ...req.query };
+    camposExcluidos.forEach((el) => delete queryObj[el]);
+
+    let query = Season.find(queryObj);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 20;
+    const skip = (page - 1) * limit;
+    query = query.limit(limit).skip(skip);
+
+    if (req.query.sort) {
+      const campos = req.query.sort.split(",").join(" ");
+      query = query.sort(campos);
+    } else {
+      query = query.sort(" ");
+    }
+
+    const seasons = await query;
     if (!seasons.length) {
       res.status(500).json({
         status: "fail",

@@ -7,9 +7,16 @@ const {
   onlyManagers,
 } = require("../controllers/authControllers");
 
-const { getInfo, patchInfo } = require("../controllers/infoControllers");
+const {
+  getInfo,
+  patchInfo,
+  postInfo,
+  deleteInfo,
+} = require("../controllers/infoControllers");
 
 router.get("/", getInfo);
-router.patch("/", protectRoute, onlyAdmin, patchInfo);
+router.patch("/:id", protectRoute, onlyAdmin, patchInfo);
+router.post("/", protectRoute, onlyAdmin, postInfo);
+router.delete("/:id", protectRoute, onlyAdmin, deleteInfo);
 
 module.exports = router;

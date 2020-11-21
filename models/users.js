@@ -21,6 +21,10 @@ const usersSchema = new mongoose.Schema({
     type: String,
     select: false,
   },
+  __v: {
+    type: Number,
+    select: false,
+  },
 });
 
 usersSchema.pre("save", async function (next) {

@@ -1,8 +1,23 @@
 const Review = require("../models/review");
 
+const getReview = async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id).populate("review");
+    res.status(201).json({
+      status: "success",
+      data: review,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: "Review no se puede encontrar",
+    });
+  }
+};
+
 const getReviews = async (req, res) => {
   try {
-    const reviews = await Review.find();
+    const reviews = await Review.find().populate("review");
     res.status(201).json({
       status: "success",
       data: reviews,
@@ -44,4 +59,4 @@ const deleteReview = async (req, res) => {
   }
 };
 
-module.exports = { getReviews, postReview, deleteReview };
+module.exports = { getReviews, postReview, deleteReview, getReview };

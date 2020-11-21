@@ -19,7 +19,7 @@ const {
 router.get("/", getEpisodes);
 router.get("/:id", getEpisode);
 router.delete("/:id", protectRoute, onlyAdmin, deleteEpisode);
-router.post("/", protectRoute, onlyAdmin, onlyManagers, postEpisode);
+router.post("/", protectRoute, onlyAdmin, postEpisode);
 router.patch("/:id", protectRoute, onlyAdmin, onlyManagers, patchEpisode);
 router.put("/:id", protectRoute, onlyAdmin, onlyManagers, putEpisode);
 

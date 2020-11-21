@@ -21,8 +21,8 @@ const {
 router.get("/", getCharacters);
 router.get("/:id", getCharacter);
 router.delete("/:id", protectRoute, onlyAdmin, deleteCharacter);
-router.post("/", protectRoute, onlyAdmin, onlyManagers, postCharacter);
-router.patch("/:id", protectRoute, onlyManagers, onlyAdmin, patchCharacter);
+router.post("/", protectRoute, onlyAdmin, postCharacter);
+router.patch("/:id", protectRoute, onlyAdmin, patchCharacter);
 router.put("/:id", protectRoute, onlyManagers, onlyAdmin, putCharacter);
 
 module.exports = router;

@@ -2,7 +2,7 @@ const Episode = require("../models/episodes");
 
 const getEpisode = async (req, res) => {
   try {
-    const episode = await Episode.findOne({ _id: req.params.id });
+    const episode = await Episode.findById(req.params.id).populate("review");
     res.status(201).json({
       status: "success",
       data: episode,
@@ -21,7 +21,7 @@ const getEpisodes = async (req, res) => {
     const queryObj = { ...req.query };
     camposExcluidos.forEach((el) => delete queryObj[el]);
 
-    let query = Episode.find(queryObj);
+    let query = Episode.find(queryObj).populate("review");
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 20;
     const skip = (page - 1) * limit;

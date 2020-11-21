@@ -2,7 +2,8 @@ const Season = require("../models/seasons");
 
 const getSeason = async (req, res) => {
   try {
-    const season = await Season.findOne({ _id: req.params.id });
+    const season = await Season.findById(req.params.id);
+    //.populate("episodes");
     res.status(201).json({
       status: "success",
       data: season,
@@ -22,6 +23,7 @@ const getSeasons = async (req, res) => {
     camposExcluidos.forEach((el) => delete queryObj[el]);
 
     let query = Season.find(queryObj);
+    //.populate("episodes"); SI LO HAGO CON CHILD REFERENCING
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 20;
     const skip = (page - 1) * limit;

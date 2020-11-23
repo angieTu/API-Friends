@@ -28,6 +28,18 @@ const infoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    origin: {
+      type: String,
+      required: true,
+    },
+    language: {
+      type: String,
+      required: true,
+    },
+    genre: {
+      type: String,
+      required: true,
+    },
     __v: {
       type: Number,
       select: false,

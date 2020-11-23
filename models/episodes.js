@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Review = require("./review");
 
 const episodesSchema = new mongoose.Schema(
   {
@@ -13,7 +14,7 @@ const episodesSchema = new mongoose.Schema(
       type: Number,
       select: false,
     },
-    // rating
+    // rating: { type: Array, default: 0 },
   },
   {
     toJSON: { virtuals: true },

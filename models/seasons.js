@@ -4,6 +4,7 @@ const Episode = require("./episodes");
 const seasonSchema = new mongoose.Schema({
   number: { type: Number, required: true },
   air_date: { type: String, required: true },
+  last_air_date: { type: String, required: true },
   description: { type: String, required: true },
   numberEpisodes: { type: Number, required: true },
   __v: {

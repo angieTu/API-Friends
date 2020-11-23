@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  protectRoute,
-  onlyAdmin,
-  onlyManagers,
-} = require("../controllers/authControllers");
+const { protectRoute, onlyAdmin } = require("../controllers/authControllers");
 
 const {
   getEpisode,
@@ -20,7 +16,7 @@ router.get("/", getEpisodes);
 router.get("/:id", getEpisode);
 router.delete("/:id", protectRoute, onlyAdmin, deleteEpisode);
 router.post("/", protectRoute, onlyAdmin, postEpisode);
-router.patch("/:id", protectRoute, onlyAdmin, onlyManagers, patchEpisode);
-router.put("/:id", protectRoute, onlyAdmin, onlyManagers, putEpisode);
+router.patch("/:id", protectRoute, onlyAdmin, patchEpisode);
+router.put("/:id", protectRoute, onlyAdmin, putEpisode);
 
 module.exports = router;

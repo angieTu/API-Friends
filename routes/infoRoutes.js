@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  protectRoute,
-  onlyAdmin,
-  onlyManagers,
-} = require("../controllers/authControllers");
+const { protectRoute, onlyAdmin } = require("../controllers/authControllers");
 
 const {
   getInfo,

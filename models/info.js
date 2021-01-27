@@ -40,6 +40,10 @@ const infoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    logo: {
+      type: String,
+      required: true,
+    },
     __v: {
       type: Number,
       select: false,

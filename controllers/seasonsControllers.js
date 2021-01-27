@@ -25,7 +25,7 @@ const getSeasons = async (req, res) => {
     let query = Season.find(queryObj);
     //.populate("episodes"); SI LO HAGO CON CHILD REFERENCING
     const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 20;
+    const limit = req.query.limit * 1 || 10;
     const skip = (page - 1) * limit;
     query = query.limit(limit).skip(skip);
 
